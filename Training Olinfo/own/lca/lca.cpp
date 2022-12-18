@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-#include "grader.cpp"
+
 #define ll long long
 
 struct Arco
@@ -15,6 +15,13 @@ struct Info
 	ll ss;
 	ll ms;
 	ll sum;
+	
+	Info(ll ar)
+	{
+		ps = ss = ms = max((ll)0, ar);
+		sum = ar;
+	}
+	Info()	{}
 };
 
 vector<vector<pair<int,ll>>> tmp;
@@ -109,6 +116,7 @@ Info maxss(int a, int b)
 	{
 		if(!isa(Log[a][i],b))
 		{
+	//		cout<<i<<" "<<a<<endl;
 			if(isfirst)
 			{
 				res = st[a][i];
@@ -117,6 +125,7 @@ Info maxss(int a, int b)
 			else
 			{	
 				merge(&res, &st[a][i], &tmp);
+		//	cout<<tmp.ms<<" "<<tmp.ps<<" "<<tmp.ss<<" "<<tmp.sum<<endl;
 				res = tmp;
 			}
 			a = Log[a][i];
@@ -124,6 +133,9 @@ Info maxss(int a, int b)
 	}
 	if(isfirst) return st[a][0];
 	else merge(&res, &st[a][0], &tmp);
+	
+//	cout<<tmp.ms<<" "<<tmp.ps<<" "<<tmp.ss<<" "<<tmp.sum<<endl;
+	
 	return tmp;
 }
 
@@ -160,13 +172,11 @@ long long massimo(int u, int v)
 	return max({res1.ms, res2.ms, res1.ss+res2.ss});
 }
 
-void init(int nd, int padre, ll parcoarr)
+void init(int nd, int padre, ll ar) //ar = peso arco di arrivo
 {
 	Log[nd][0] = padre;
-	sum[nd][0] = parcoarr;
-	minim[nd][0] = parcoarr;
-	ll value = max((ll)0, parcoarr);
-	st[nd][0] = {value,value,value,parcoarr};
+	sum[nd][0] = minim[nd][0] =ar;
+	st[nd][0] = {ar};
 	ancestors(nd);
 	tin[nd] = ++t;
 	
@@ -184,7 +194,6 @@ void init(int nd, int padre, ll parcoarr)
 void inizia(int N, int T, int A[], int B[], int C[])
 {
 	tmp.resize(N); tin.resize(N); tout.resize(N); tree.resize(N);
-	
 	for(int i=0; i<N-1; i++)
 	{
 		tmp[A[i]].push_back({B[i],C[i]});

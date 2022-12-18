@@ -62,7 +62,7 @@ void vcatena(int nd)
 	actualwindow ++;
 	m[tr[nd].beauty]++;
 	
-	if(m[tr[nd].beauty] == 1)
+	if(m[tr[nd].beauty] == 1) //dopo dovro risettare a zero questa cella per riutilizzare il vettore
 		reset.push_back(tr[nd].beauty);
 	
 	if(m[tr[nd].beauty]>massimo || (m[tr[nd].beauty]==massimo && tr[nd].beauty<valmassimo))

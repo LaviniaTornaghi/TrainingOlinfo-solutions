@@ -19,7 +19,6 @@ vector<int> solution;
 int m[MAXN]; //marcatura dei label
 vector<int> reset;
 
-
 int Dfsorder(int nd)
 {
 	posdfs[nd] = dfs.size();
@@ -110,7 +109,7 @@ void vcatena(int nd)
 	
 	solution[nd] = valmassimo;
 	
-	//chiamata ricorsiva di risalita
+	//chiamata ricorsiva di risalita se la catena continue
 	int ndpadre = tr[nd].padre;	
 	if(tr[ndpadre].heavych == nd && tr[nd].padre != -1)	
 		vcatena(ndpadre);

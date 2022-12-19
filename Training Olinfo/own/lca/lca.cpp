@@ -116,7 +116,6 @@ Info maxss(int a, int b)
 	{
 		if(!isa(Log[a][i],b))
 		{
-	//		cout<<i<<" "<<a<<endl;
 			if(isfirst)
 			{
 				res = st[a][i];
@@ -125,7 +124,6 @@ Info maxss(int a, int b)
 			else
 			{	
 				merge(&res, &st[a][i], &tmp);
-		//	cout<<tmp.ms<<" "<<tmp.ps<<" "<<tmp.ss<<" "<<tmp.sum<<endl;
 				res = tmp;
 			}
 			a = Log[a][i];
@@ -133,9 +131,6 @@ Info maxss(int a, int b)
 	}
 	if(isfirst) return st[a][0];
 	else merge(&res, &st[a][0], &tmp);
-	
-//	cout<<tmp.ms<<" "<<tmp.ps<<" "<<tmp.ss<<" "<<tmp.sum<<endl;
-	
 	return tmp;
 }
 

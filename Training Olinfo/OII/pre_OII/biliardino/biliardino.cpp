@@ -18,7 +18,6 @@ void dfs(int nd, int padre)
 		Log[nd][i] = Log[Log[nd][i-1]][i-1];
 		sum[nd][i] = sum[nd][i-1] + sum[Log[nd][i-1]][i-1];
 	}
-	
 	for(int i=0; i<tree[nd].size(); i++) dfs(tree[nd][i], nd);
 }
 
@@ -38,15 +37,6 @@ void inizia(int N, int T[])
 		s.push({v[i], i});
 	}
 	dfs(N, N);
-	/*
-	 cout<<endl;
-	for(int i=0; i<=N; i++)
-	{
-		for(int j=0; j<3; j++)
-			cout<<mn[i][j]<<" ";
-		cout<<endl;
-	}*/
-	
 }
 
 long long passaggio(int a, int b) 

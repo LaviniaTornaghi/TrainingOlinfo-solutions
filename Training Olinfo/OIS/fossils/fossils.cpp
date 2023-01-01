@@ -7,7 +7,7 @@ int N, M, Q, K;
 struct NodoA
 {
 	vector<int> figli;
-	vector<int> ndarrivo;
+	vector<int> ndarrivo; //dove arriva la query
 	vector<pair<int, ll>>query; //first = indice, second = esito
 	vector<pair<int, ll>> archi; //first = dove arriva scond = peso
 };
@@ -45,11 +45,6 @@ struct FenwickTree
 		return res;
 	}
 };
-
-bool cmp(pair<int,ll> i1, pair<int,ll> i2)
-{
-	return i1.first<i2.first;
-}
 
 FenwickTree ft;
 vector<NodoA> A;
@@ -122,16 +117,14 @@ int main()
 	}
 	
 	computa(1);
-	
 	dfs(1);
 	
 	vector<pair<int,ll>> res;
 	
 	for(int i=1; i<=N; i++) 
-	{
 		for(int j=0; j<A[i].query.size(); j++)
 			res.push_back(A[i].query[j]);
-	}
-	sort(res.begin(), res.end(), cmp);
+	
+	sort(res.begin(), res.end());
 	for(auto it : res) cout<<it.second<<endl;
 }

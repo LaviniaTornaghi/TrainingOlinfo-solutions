@@ -70,7 +70,6 @@ void dfs(int nd)
 	for(auto arco in A[nd].archi)
 		ft.addrange(dfspos[arco.first], dfspos[arco.first]+B[arco.first].ss-1, arco.second);
 	
-	
 	for(int i=0; i<A[nd].query.size(); i++)
 		A[nd].query[i].second = ft.query(dfspos[A[nd].ndarrivo[i]]);
 	

@@ -18,8 +18,7 @@ int main()
         maxvalue = max(maxvalue, b+ADD);
      }
 
-    int s = maxvalue+5;
-    int t = maxvalue+6;
+    int s = maxvalue+5, t = maxvalue+6;
 
     for(auto it:gr)
     {
@@ -30,8 +29,7 @@ int main()
         }
     }
     cout<<"Yes\n";
-    int conta = 0;
-
+   
     for(auto it:gr)
     {
         if(it.first<ADD)
@@ -82,10 +80,7 @@ int main()
         if(nd == s || nd == t || nd<ADD) continue;
 
         for(auto [u, b] : adj)
-        {
             if(u!=t && b)
                 cout<<u<<" "<<nd-ADD<<endl;
-        }
     }
-
 }

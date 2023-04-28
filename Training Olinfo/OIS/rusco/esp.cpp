@@ -25,31 +25,32 @@ ll spfa()
         visited[v] = 0;
         
         //crea lista di adiacenza
-        vector<pair<int,int>> gr;
+        vector<pair<int,int>> gr(3);
 
         if(v%2) // nodo archi uscenti
         {
             //arco verso altra versione di se stesso
-            gr.push_back({v-1, A[v][0]});
+            gr[0] ={v-1, A[v][0]};
             //arco verso destra
-            if(A[v][1] != -1) gr.push_back({v-1+2, A[v][1]});
+            gr[1] = {v-1+2, A[v][1]};
             //arco verso giu
-            if(A[v][2] != -1) gr.push_back({v-1+2*M, A[v][2]});
+            gr[2] = {v-1+2*M, A[v][2]};
         }
         else
         {
             //arco verso altra versione di se stesso
-            gr.push_back({v+1, A[v][0]});
+            gr[0] = {v+1, A[v][0]};
             //arco verso sinistra
-            if(A[v][1] != -1) gr.push_back({v-2+1, A[v][1]});
+            gr[1] = {v-2+1, A[v][1]};
             //arco verso su
-            if(A[v][2] != -1) gr.push_back({v-2*M+1, A[v][2]});
+            gr[2] = {v-2*M+1, A[v][2]};
 
         }
-
+        //cout<<"nodo "<<v<<endl;
         for(auto [u, b] : gr)
         {
-            if(!b) continue;
+          //  cout<<u<<" "<<b<<endl;
+            if(!b || b==-1) continue;
             int costo = 0;
             if( v == u+1) // vado da uscente ad entrante
                 costo = -peso[u];
@@ -94,6 +95,7 @@ int main()
             if(j==M-1) A[node+1][1] = -1;
             if(i==0) A[node][2] = -1;
             if(j==0) A[node][1] = -1;
+            //cout<<node<<" "<<A[node][0]<<" "<<A[node][1]<<" "<<A[node][2]<<endl;
        }       
     }
 
@@ -103,8 +105,8 @@ int main()
     {
         costo += spfa();
         flow ++;
-        int nd = 2*(M*(N-1)+M-1); 
-
+        int  nd = 2*(M*(N-1)+M-1); 
+      // cout<<"fine spfa\n\n\n\n\n\n\n\n\n\n";
         while(nd != 1)
         {
             if(nd%2) //archi uscenti

@@ -89,15 +89,12 @@ struct SegTree
 
     int  query(int l, int r)
     {
-      //  cout<<"query"<<" "<<l<<" "<<r<<endl;
-    //    print(tree[r]);
         sq = l; eq = r;
         return query(tree[r], 0, tmp-1);
     }
 
     int  query(Node* nd, int l, int r)
     {
-       // cout<<l<<" "<<r<<" "<<nd->sum<<endl;
         if(l>eq || r<sq) return 0;
 
         if(l>=sq && r<= eq) return nd->sum;
@@ -105,13 +102,6 @@ struct SegTree
         int mid = (l+r)/2;
 
         return query(nd->l, l, mid) + query(nd->r, mid+1, r);
-    }
-
-    void print(Node*nd)
-    {
-        cout<<nd->sum<<" ";
-        if(nd->l) print(nd->l);
-        if(nd->r) print(nd->r); 
     }
 };
 
